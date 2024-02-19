@@ -1,0 +1,400 @@
+#1.Inbound Tourism: Foreign Tourist Arrivals (FTAs), Arrivals of Non-Resident Indians (NRIs)
+#and International Tourist Arrivals (ITAs)
+def inbound():
+  import pandas as pd, matplotlib.pyplot as plt,numpy as np
+  a=pd.read_csv('ia.csv')
+  s=pd.DataFrame(a)
+  l=np.arange(1,20,2)
+  print(s)
+  x=[2014,2015,2016,2017,2018]
+  FTA=[7.68,8.03,8.80,10.04,10.56]
+  NRI=[5.43,5.74,6.22,6.77,6.87]
+  ITA=[13.11,13.76,15.03,16.81,17.42]
+  b=['FTA','nri','intarrival']
+  p=plt.bar(a.year,a.FTA,width=0.25,color='b')
+  j=plt.bar(a.year+0.25,a.nri,width=0.25,color='g')
+  k=plt.bar(a.year+0.5,a.intarrival,width=0.2,color='m')
+  fd={'family':'monotype corsiva','color':'k','size':'20','weight':'bold'}
+  plt.ylabel('global tourist arrivals',fontdict=fd,labelpad=5)
+  plt.xlabel('years',fontdict=fd,labelpad=5)
+  plt.title('Inbound Tourism',fontdict=fd,pad=20)
+  plt.xticks(a.year)
+  plt.legend(['FTA','NRI','ITA'])
+  plt.show()
+
+#2:2.1 SEASONALITY IN FOREIGN TOURIST ARRIVALS IN India
+def seasonality():
+  import matplotlib.pyplot as plt, numpy as np ,pandas as pd
+  a=pd.read_csv('seasonal.csv')
+  print(a) 
+  b=(1,20,6)
+  plt.bar(a.year,a.jan,width=0.08,color='y')
+  plt.bar(a.year+0.16,a.feb,width=0.08,color='r')
+  plt.bar(a.year+0.24,a.march,width=0.08,color='b')
+  plt.bar(a.year+0.32,a.april,width=0.08,color='g')
+  plt.bar(a.year+0.40,a.may,width=0.08,color='y')
+  plt.bar(a.year+0.48,a.june,width=0.08,color='m')
+  plt.bar(a.year+0.56,a.july,width=0.08,color='k')
+  plt.bar(a.year+0.64,a.aug,width=0.08)
+  plt.bar(a.year+0.72,a.sep,width=0.08,color='r')
+  plt.bar(a.year+0.8,a.oct,width=0.08,color='b')
+  plt.bar(a.year+0.88,a.nov,width=0.08,color='g')
+  plt.bar(a.year+0.96,a.dec,width=0.08,color='m')
+  fd={'family':'monotype corsiva','color':'k','size':'20','weight':'bold'}
+  plt.ylabel('Months',fontdict=fd,labelpad=5)
+  plt.xlabel('years',fontdict=fd,labelpad=5)
+  plt.title('Seasonality in foreign arrivals in India',fontdict=fd,pad=20)
+  plt.xticks(a.year,labels=['2016','2017','2018'])
+  plt.legend()
+  plt.show()
+
+#2:2.2 leak and peak
+def lkpk():
+  import matplotlib.pyplot as plt, numpy as np ,pandas as pd
+  from google.colab import files
+  q=files.upload()
+  a=pd.read_csv('lean_peak.csv')
+  print(a) 
+  plt.subplot(2,1,1)
+  plt.bar(a.ctry,a.ln_per,width=0.8,color='r')
+  fd={'family':'monotype corsiva','color':'k','size':'20','weight':'bold'}
+  plt.ylabel('months',fontdict=fd,labelpad=5)
+  plt.xlabel('country',fontdict=fd,labelpad=5)
+  plt.title('Leak months',fontdict=fd,pad=20)
+  plt.xticks(a.ctry)
+  plt.legend()
+  plt.subplot(2,1,2)
+  plt.bar(a.ctry,a.pk_per,color='b')
+  plt.ylabel('months',fontdict=fd,labelpad=5)
+  plt.xlabel('country',fontdict=fd,labelpad=5)
+  plt.title('Peak months',fontdict=fd,pad=20)
+  plt.xticks(a.ctry)
+  plt.legend()
+  plt.show()
+
+#2:2.3 fta acc to quarter
+def fta():
+  import pandas as pd, matplotlib.pyplot as plt,numpy as np
+  a=pd.read_csv('ssnl_mnth.csv') 
+  print(a) 
+  x = np.arange(4,1)
+  plt.bar(a.year,a.qtr1,width=0.15)
+  plt.bar(a.year+0.15,a.qtr2,width=0.15)
+  plt.bar(a.year+0.3,a.qtr3,width=0.15)
+  plt.bar(a.year+0.45,a.qtr4,width=0.15)
+  plt.ylabel('months',fontdict=fd,labelpad=5)
+  plt.xlabel('Years',fontdict=fd,labelpad=5)
+  plt.title('Leak and Peak months',fontdict=fd,pad=20)
+  plt.yticks(x,labels=['qtr1','qtr2','qtr3','qtr4'])
+  plt.legend()
+  plt.show()
+
+#3:3.1 mode of travel
+def mode():
+  import pandas as pd, matplotlib.pyplot as plt,numpy as np
+  a=pd.read_csv('mode_travel.csv') 
+  print(a)
+  plt.bar(a.year,a.arrivals)
+  fd={'family':'monotype corsiva','color':'k','size':'20','weight':'bold'}
+  plt.ylabel('Arrivals',fontdict=fd,labelpad=5)
+  plt.xlabel('years',fontdict=fd,labelpad=5)
+  plt.title(' Mode of travel while visiting India',fontdict=fd,pad=20)
+  plt.xticks(a.year,labels=['2015','2016','2017','2018'])
+  plt.legend()
+  plt.show()
+  plt.subplot(2,2,1)
+  y=np.array([84.5,0.4,14.8])
+  l=['air','sea','land']
+  plt.pie(y,labels=l)
+  plt.legend()
+  plt.subplot(2,2,2)
+  v=np.array([84.1,0.9,15])
+  l=['air','sea','land']
+  plt.pie(v,labels=l)
+  plt.legend()
+  plt.subplot(2,2,3)
+  t=np.array([79.6,0.7,19.7])
+  l=['air','sea','land']
+  plt.pie(t,labels=l)
+  plt.legend()
+  plt.subplot(2,2,4)
+  u=np.array([79.6,0.8,19.6])
+  l=['air','sea','land']
+  plt.pie(u,labels=l)
+  plt.legend()
+  plt.show()
+
+#3:3.2 world and nationality wise distribution
+def wndist():
+  import pandas as pd, matplotlib.pyplot as plt,numpy as np
+  a=pd.read_csv('arrivals.csv') 
+  print(a) 
+  b=np.arange(100000,1000000,100000) 
+  plt.bar(a.year,a.s_asia,width=0.05,color='b') 
+  plt.bar(a.year+0.05,a.w_europe,width=0.05,color='g') 
+  plt.bar(a.year+0.1,a.Namerica,width=0.05,color='r') 
+  plt.bar(a.year+0.15,a.se_asia,width=0.05,color='c') 
+  plt.bar(a.year+0.2,a.e_asia,width=0.05,color='m') 
+  plt.bar(a.year+0.25,a.w_asia,width=0.05,color='y') 
+  plt.bar(a.year+0.3,a.e_asia,width=0.05,color='k') 
+  plt.bar(a.year+0.35,a.australia,width=0.05,color='r') 
+  plt.bar(a.year+0.4,a.Camerica,width=0.05,color='y') 
+  fd={'family':'monotype corsiva','color':'k','size':'20','weight':'bold'}
+  plt.ylabel('Country',fontdict=fd,labelpad=5)
+  plt.xlabel('years',fontdict=fd,labelpad=5)
+  plt.title(' world and nationality wise distribution in India',fontdict=fd,pad=20)
+  plt.xticks(a.year,labels=['2016','2017','2018'])
+  plt.legend()
+  plt.show() 
+  while True:
+    print('TO VIEW NATIONALITY-WISE DISTRIBUTION OF FTAs IN INDIA, 2018')
+    print('For south asia click 1')
+    print('For west europe click 2')
+    print('For North america click 3')
+    print('For south east asia click 4')
+    print('For east asia click 5') 
+    print('For west asia click 6')
+    print('For east europe click 7')
+    print('For australia click 8')
+    print('For central america click 9')
+    print('For exit click 10')
+    w=eval(input('Enter your choice: ')) 
+    if w==1:
+      q=files.upload() 
+      j=pd.read_csv('nat_wise.csv') 
+      plt.pie(j.arrivals)
+      plt.show()
+    elif w==2:
+      q=files.upload() 
+      j=pd.read_csv('Book1.csv') 
+      plt.pie(j.we_visit)
+      plt.show()
+    elif w==3:
+      q=files.upload() 
+      j=pd.read_csv('namerica_visit.csv') 
+      plt.pie(j.na_visit)
+      plt.show()
+    elif w==4:
+      q=files.upload() 
+      j=pd.read_csv('seasia_visit.csv') 
+      plt.pie(j.sea_visit)
+      plt.show()
+    elif w==5:
+      q=files.upload() 
+      j=pd.read_csv('easia_visit.csv') 
+      plt.pie(j.ea_visit)
+      plt.show()
+    elif w==6:
+      q=files.upload() 
+      j=pd.read_csv('wasia_visit.csv') 
+      plt.pie(j.wa_visit)
+      plt.show()
+    elif w==7:
+      q=files.upload() 
+      j=pd.read_csv('eeurope_visit.csv') 
+      plt.pie(j.ee_visit)
+      plt.show()
+    elif w==8:
+      q=files.upload() 
+      j=pd.read_csv('aus_visit.csv') 
+      plt.pie(j.aus_visit)
+      plt.show()
+    elif w==9:
+      q=files.upload() 
+      j=pd.read_csv('camerica_visit.csv') 
+      plt.pie(j.cam_visit)
+      plt.show()
+    elif w==10:
+      print('Thankyou')
+      break
+
+#4:4.1 PORTS OF ENTRY
+def ports():
+  import pandas as pd,matplotlib.pyplot as plt,numpy as np
+  a=pd.read_csv('airport.csv')
+  print(a)
+  plt.bar(a.year,a.arrivals)
+  plt.show()
+  plt.bar(a.year,a.mum,width=0.2)
+  plt.bar(a.year+0.2,a.kol,width=0.2)
+  plt.bar(a.year+0.4,a.chennai,width=0.2)
+  plt.bar(a.year+0.6,a.delhi,width=0.2)
+  plt.bar(a.year+0.8,a.bgl,width=0.2)
+  plt.bar(a.year+1,a.hyder,width=0.2)
+  fd={'family':'monotype corsiva','color':'k','size':'20','weight':'bold'}
+  plt.ylabel('airport',fontdict=fd,labelpad=5)
+  plt.xlabel('years',fontdict=fd,labelpad=5)
+  plt.title('PORTS OF ENTRY in India',fontdict=fd,pad=20)
+  plt.xticks(a.year,labels=['2016','2017','2018'])
+  plt.legend()
+  plt.show()
+
+#5:5.1 gender
+def gender():
+  import pandas as pd, matplotlib.pyplot as plt,numpy as np
+  a=pd.read_csv('gender.csv')
+  print(a)
+  plt.bar(a.year,a.male,width=0.2)
+  plt.bar(a.year+0.2,a.female,width=0.2)
+  plt.bar(a.year+0.4,a.nrep,width=0.2)
+  fd={'family':'monotype corsiva','color':'k','size':'20','weight':'bold'}
+  plt.ylabel('gender',fontdict=fd,labelpad=5)
+  plt.xlabel('years',fontdict=fd,labelpad=5)
+  plt.title('arrival in india in terms of gender in India',fontdict=fd,pad=20)
+  plt.xticks(a.year,labels=['2014','2015','2016','2017','2018'])
+  plt.legend()
+  plt.show()
+
+#5:5.2 gender distribution
+def gendist():
+  import pandas as pd,matplotlib.pyplot as plt ,numpy as np
+  a=np.array([41.4,57.8,0.8])
+  l=['Female','Male','Not Reported']
+  plt.pie(a,labels=l)
+  plt.show()
+
+#6:6.1 age group-wise
+def agegrp():
+  import pandas as pd , matplotlib.pyplot as plt,numpy as np
+  a=pd.read_csv('age.csv')
+  print(a)
+  plt.bar(a.year,a.z_f,width=0.1)
+  plt.bar(a.year+0.1,a.f_tf,width=0.1)
+  plt.bar(a.year+0.2,a.tf_tf,width=0.1)
+  plt.bar(a.year+0.3,a.tf_ff,width=0.1)
+  plt.bar(a.year+0.4,a.ff_ff,width=0.1)
+  plt.bar(a.year+0.5,a.ff_sf,width=0.1)
+  fd={'family':'monotype corsiva','color':'k','size':'20','weight':'bold'}
+  plt.ylabel('age-group',fontdict=fd,labelpad=5)
+  plt.xlabel('years',fontdict=fd,labelpad=5)
+  plt.title('arrival in india in terms of age-group in India',fontdict=fd,pad=20)
+  plt.xticks(a.year,labels=['2014','2015','2016','2017','2018'])
+  plt.legend()
+  plt.show()
+
+#6:6.2 age pie
+def agepie():
+  import pandas as pd,matplotlib.pyplot as plt ,numpy as np
+  a=np.array([9.3,8.4,18.6,21,19.8,14.2,8.7])
+  l=['0-14','15-24','25-34','35-44','45-54','55-64','65 and above']
+  plt.pie(a,labels=l)
+  plt.show()
+
+#7:7.1 purpose of visit
+def prps():
+  import pandas as pd, matplotlib.pyplot as plt,numpy as np
+  a=pd.read_csv('prps_visit.csv')
+  print(a)
+  plt.bar(a.cntry,a.b_p,width=0.8)
+  plt.bar(a.cntry,a.lh_r,width=0.8)
+  plt.bar(a.cntry,a.med,width=0.8)
+  plt.bar(a.cntry,a.ind_dspr,width=0.8)
+  plt.bar(a.cntry,a.others,width=0.8)
+  fd={'family':'monotype corsiva','color':'k','size':'20','weight':'bold'}
+  plt.ylabel('gender',fontdict=fd,labelpad=5)
+  plt.xlabel('years',fontdict=fd,labelpad=5)
+  plt.title('arrival in india in terms of purpose of visit in India',fontdict=fd,pad=20)
+  plt.xticks(a.cntry)
+  plt.legend()
+  plt.show()
+
+#8:8.1 foreign exchange currency
+def forcur():
+  import pandas as pd, matplotlib.pyplot as plt,numpy as np
+  a=pd.read_csv('for_exchg.csv')
+  print(a)
+  l=['2014','2015','2016','2017','2018']
+  plt.bar(a.year,a.cr,width=0.25)
+  plt.bar(a.year+0.25,a.millions,width=0.25)
+  fd={'family':'monotype corsiva','color':'k','size':'20','weight':'bold'}
+  plt.ylabel('currency',fontdict=fd,labelpad=5)
+  plt.xlabel('years',fontdict=fd,labelpad=5)
+  plt.title('foreign exchange currency in India',fontdict=fd,pad=20)
+  plt.xticks(a.year,labels=['2014','2015','2016','2017','2018'])
+  plt.legend()
+  plt.show()
+  plt.subplot(2,1,1)
+  plt.pie(a.per_chng,labels=l)
+  plt.subplot(2,1,2)
+  plt.pie(a.per_chg,labels=l)
+  plt.show()
+
+#9:9.1 mode of transport for departures
+def trans():
+  import pandas as pd, matplotlib.pyplot as plt,numpy as np
+  a=np.array([96.47,2.57,0.96])
+  l=['Air','Land','Sea']
+  plt.pie(a,labels=l)
+  plt.show()
+
+#10:10.1 domestic and foreign tourist arrivals
+def dfta():
+  import pandas as pd, matplotlib.pyplot as plt,numpy as np
+  a=pd.read_csv('dom_for.csv')
+  print(a)
+  plt.bar(a.year,a.domestic,width=0.4)
+  plt.bar(a.year+0.4,a.foreign,width=0.4)
+  fd={'family':'monotype corsiva','color':'k','size':'20','weight':'bold'}
+  plt.ylabel('gender',fontdict=fd,labelpad=5)
+  plt.xlabel('years',fontdict=fd,labelpad=5)
+  plt.title('domestic and foreign tourist arrivals in India',fontdict=fd,pad=20)
+  plt.xticks(a.year,labels=['2014','2015','2016','2017','2018'])
+  plt.legend()
+  plt.show()
+
+#10:10.2 per-wise domestic and foreign tourist arrivals
+def perdfta():
+  import pandas as pd, matplotlib.pyplot as plt,numpy as np
+  a=pd.read_csv('dom_for.csv')
+  print(a)
+  plt.bar(a.year,a.an_dom,width=0.4)
+  plt.bar(a.year+0.4,a.an_for,width=0.4)
+  fd={'family':'monotype corsiva','color':'k','size':'20','weight':'bold'}
+  plt.ylabel('type of arrival along with therir annual report',fontdict=fd,labelpad=5)
+  plt.xlabel('years',fontdict=fd,labelpad=5)
+  plt.title('per-wise domestic and foreign tourist arrivals in India',fontdict=fd,pad=20)
+  plt.xticks(a.year,labels=['2014','2015','2016','2017','2018'])
+  plt.legend()
+  plt.show()
+
+#11:11.1 per-share of top 10 states/UT's in domestic visits
+def pershare():
+  import pandas as pd,matplotlib.pyplot as plt ,numpy as np
+  a=np.array([20.8,15.4,11.6,10.5,6.4,5,4.6,4.5,2.9,2.7])
+  l=['Tamil Nadu','Uttar Pradesh','Karnataka','Andhra Pradesh','Maharashtra','Telangana','West Bengal','Madhya Pradesh','Gujarat','Rajasthan']
+  plt.pie(a,labels=l)
+  plt.show()
+
+#11:11.2 per-share of top 10 states/UT's in foreign visits
+def state():
+  import pandas as pd,matplotlib.pyplot as plt ,numpy as np
+  a=np.array([21,17.6,13.1,9.5,6.1,5.6,4.2,3.8,3.8,3.2,12.1])
+  l=['Tamil Nadu','Maharashtra','Uttar Pradesh','Delhi','Rajasthan','West Bengal','Punjab','Kerala','Bihar','Goa','Others']
+  plt.pie(a,labels=l)
+  plt.show()
+
+#12 monuments visits domestic as well as foreign
+def monuments():
+  import pandas as pd, matplotlib.pyplot as plt,numpy as np
+  a=pd.read_csv('mmts.csv')
+  z=np.arange(1,11,1)
+  print(a)
+  l=['Taj Mahal','Red Fort','Qutbminar','Sun temple','Agra Fort','Charminar','Shanirwada','Bibi ka Maqbara','Group of monument','Gol Gumbaz']
+  plt.bar(z,a.domestic,width=0.5)
+  plt.bar(z+0.5,a.foreign,width=0.5)
+  fd={'family':'monotype corsiva','color':'k','size':'20','weight':'bold'}
+  plt.ylabel('type of arrival for monuments',fontdict=fd,labelpad=5)
+  plt.xlabel('MONUMENTS',fontdict=fd,labelpad=5)
+  plt.title('DOMESTIC AND FOREIGN VISITORS AT 10 MOST POPULAR CENTRALLY PROTECTED TICKETED ASI MONUMENTS',fontdict=fd,pad=20)
+  plt.xticks(z,['Taj mahal','redfort','qutubminar','suntemple','agrafort','charminar','shaniwada','bibi ka maqbara','group of monuments','golgmbz'])
+  plt.legend()
+  plt.show()
+  plt.subplot(2,2,1)
+  plt.pie(a.per_do,labels=l)
+  plt.subplot(2,2,2)
+  plt.pie(a.per_fo,labels=l)
+  plt.show()
+
+
+
+
